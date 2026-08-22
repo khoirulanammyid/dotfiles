@@ -4,6 +4,7 @@ format = """
 $username\
 $hostname\
 $directory\
+$nix_shell\
 $git_branch\
 $git_state\
 $git_status\
@@ -13,38 +14,54 @@ $python\
 $character"""
 
 [directory]
-style = "blue"
+style = "fg:83a598" # Biru pastel Gruvbox
+format = "[$path]($style) "
+
+[username]
+style_user = "fg:fabd2f bold" # Kuning hangat Gruvbox
+style_root = "fg:fb4934 bold"
+format = "[$user]($style) "
+show_always = false
+
+[hostname]
+style = "fg:d3869b" # Ungu pastel Gruvbox
+format = "@[$hostname]($style) "
+disabled = false
+
+[nix_shell]
+format = "[$symbol($state)]($style) "
+symbol = "❄️ "
+style = "bold fg:83a598"
+disabled = false
 
 [character]
-success_symbol = "[❯](purple)"
-error_symbol = "[❯](red)"
-vimcmd_symbol = "[❮](green)"
+success_symbol = "[>](fg:b8bb26 bold)" # Hijau pastel Gruvbox
+error_symbol = "[>](fg:fb4934 bold)"   # Merah pastel Gruvbox
+vimcmd_symbol = "[<](fg:fabd2f bold)"
 
 [git_branch]
 format = "[$branch]($style)"
-style = "bright-black"
+style = "fg:928374 bold" # Abu-abu/cokelat netral Gruvbox
 
 [git_status]
-format = "[[(*$conflicted$untracked$modified$staged$renamed$deleted)](218) ($ahead_behind$stashed)]($style)"
-style = "cyan"
-conflicted = "​"
-untracked = "​"
-modified = "​"
-staged = "​"
-renamed = "​"
-deleted = "​"
+format = "[[(*$conflicted$untracked$modified$staged$renamed$deleted)](fg:d65d0e) ($ahead_behind$stashed)]($style)"
+style = "fg:83a598"
+conflicted = ""
+untracked = ""
+modified = ""
+staged = ""
+renamed = ""
+deleted = ""
 stashed = "≡"
 
 [git_state]
 format = '\([$state( $progress_current/$progress_total)]($style)\) '
-style = "bright-black"
+style = "fg:928374"
 
 [cmd_duration]
-format = "[$duration]($style) "
-style = "yellow"
+format = "[$duration](fg:fabd2f) "
 
 [python]
-format = "[$virtualenv]($style) "
-style = "bright-black"
+format = "[$virtualenv](fg:928374) "
 detect_extensions = []
 detect_files = []
