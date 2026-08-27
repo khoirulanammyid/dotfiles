@@ -1,0 +1,66 @@
+#!/bin/sh
+# Variabel path skrip OSD
+OSD="$HOME/.local/bin/osd"
+
+# Variabel besaran kenaikan/penurunan volume
+STEP="5%"
+
+get_sink_volume() {
+  wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print int($2 * 100)}'
+}
+
+is_sink_muted() {
+  wpctl get-volume @DEFAULT_AUDIO_SINK@ | grep -q "MUTED"
+}
+
+is_source_muted() {
+  wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | grep -q "MUTED"
+}
+
+adjust_sink_volume() {
+  wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ "$1"
+}
+
+toggle_sink_mute() {
+  wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+}
+
+toggle_source_mute() {
+  wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+}
+
+ACTION="$1"
+
+case "$ACTION" in
+up)
+  adjust_sink_volume "${STEP}+"
+  vol=$(get_sink_volume)
+  "$OSD" "Volume" "${vol}%" "$vol" volume_osd
+  ;;
+down)
+  adjust_sink_volume "${STEP}-"
+  vol=$(get_sink_volume)
+  "$OSD" "Volume" "${vol}%" "$vol" volume_osd
+  ;;
+mute)
+  toggle_sink_mute
+  if is_sink_muted; then
+    "$OSD" "Audio" "Muted" "Muted" volume_osd
+  else
+    vol=$(get_sink_volume)
+    "$OSD" "Audio" "${vol}%" "$vol" volume_osd
+  fi
+  ;;
+mic-mute)
+  toggle_source_mute
+  if is_source_muted; then
+    "$OSD" "Microphone" "Muted" "Muted" mic_osd
+  else
+    "$OSD" "Microphone" "Unmuted" "Unmuted" mic_osd
+  fi
+  ;;
+*)
+  echo "Penggunaan: $0 {up|down|mute|mic-mute}"
+  exit 1
+  ;;
+esac

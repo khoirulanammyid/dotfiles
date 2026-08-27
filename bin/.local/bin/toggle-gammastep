@@ -1,0 +1,10 @@
+#!/bin/sh
+OSD="$HOME/.local/bin/osd"
+
+if pgrep -x "gammastep" >/dev/null; then
+  pkill gammastep
+  "$OSD" "Gammastep" "OFF" "" gammastep_osd
+else
+  gammastep -O 4500 &
+  "$OSD" "Gammastep" "4500K (ON)" "" gammastep_osd
+fi

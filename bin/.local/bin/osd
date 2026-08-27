@@ -1,0 +1,31 @@
+#!/bin/sh
+# Shell: POSIX-compliant (sh)
+
+if [ "$#" -lt 2 ]; then
+  echo "Penggunaan: $0 <judul> <pesan> [nilai/status] [tag_unik]"
+  exit 1
+fi
+
+TITLE="$1"
+MESSAGE="$2"
+VALUE="${3:-}"
+TAG="${4:-osd_general}"
+
+# -a osd -> Memicu custom config [app-name=osd] di mako
+# -h string:x-canonical-private-synchronous:$TAG -> Agar notifikasi menimpa yang lama (tidak spam)
+NOTIFY_ARGS="-a osd -h string:x-canonical-private-synchronous:$TAG -t 1200"
+
+# Cek apakah VALUE adalah angka murni untuk progress bar
+if [ -n "$VALUE" ]; then
+  case "$VALUE" in
+  *[!0-9]*)
+    # Bukan angka (bisa boolean true/false atau string)
+    ;;
+  *)
+    # Angka murni
+    NOTIFY_ARGS="$NOTIFY_ARGS -h int:value:$VALUE"
+    ;;
+  esac
+fi
+
+notify-send $NOTIFY_ARGS "$TITLE" "$MESSAGE"

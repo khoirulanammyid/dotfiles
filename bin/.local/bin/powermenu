@@ -1,0 +1,44 @@
+#!/bin/sh
+options="󰍃 Lock\n󰤄 Suspend\n󰑓 Reboot\n󰐥 Shutdown\n󰗼 Logout"
+
+chosen=$(printf "%b" "$options" | fuzzel -d \
+  --prompt="> " \
+  --lines=5 \
+  --width=20 \
+  --anchor=center)
+
+[ -z "$chosen" ] && exit 0
+
+confirm() {
+  confirmation=$(printf "No\nYes" | fuzzel -d \
+    --prompt="Sure to $1? > " \
+    --lines=2 \
+    --width=40 \
+    --anchor=center)
+
+  [ "$confirmation" = "Yes" ]
+}
+
+case "$chosen" in
+*Lock*)
+  swaylock
+  ;;
+*Suspend*)
+  systemctl suspend
+  ;;
+*Reboot*)
+  if confirm "Reboot"; then
+    systemctl reboot
+  fi
+  ;;
+*Shutdown*)
+  if confirm "Shutdown"; then
+    systemctl poweroff
+  fi
+  ;;
+*Logout*)
+  if confirm "Logout"; then
+    niri msg action quit
+  fi
+  ;;
+esac

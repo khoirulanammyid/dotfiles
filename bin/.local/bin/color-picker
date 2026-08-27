@@ -1,0 +1,14 @@
+#!/bin/sh
+HEX_COLOR=$(grim -g "$(slurp -p)" -t ppm - | magick - -format '%[pixel:p{0,0}]' txt:- | tail -n 1 | awk '{print $3}' | tr -d '#')
+
+[ -z "$HEX_COLOR" ] && exit 0
+echo "#$HEX_COLOR" | wl-copy
+
+ICON_PATH="/tmp/color_preview.png"
+magick -size 64x64 xc:"#$HEX_COLOR" "$ICON_PATH"
+
+notify-send -h string:x-canonical-private-synchronous:color_osd \
+            -t 5000 \
+            -i "$ICON_PATH" \
+            "Color Picker" \
+            "#$HEX_COLOR"

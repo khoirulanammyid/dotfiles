@@ -1,62 +1,37 @@
-# Load custom aliases
-source "$HOME/.config/aliases"
+HISTFILE="$HOME/.config/zsh/.zsh_history"
+HISTSIZE=10000
+SAVEHIST=10000
+setopt append_history
+setopt share_history
+setopt hist_ignore_dups
+setopt hist_ignore_space
 
-# Created by Zap installer
-[ -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ] && source "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh"
-plug "zsh-users/zsh-autosuggestions"
-plug "zap-zsh/supercharge"
-plug "zap-zsh/exa"
-plug "zsh-users/zsh-syntax-highlighting"
-export VI_MODE_ESC_INSERT="jk" && plug "zap-zsh/vim"
-plug "Aloxaf/fzf-tab"
-plug "zap-zsh/fzf"
-plug "wintermi/zsh-starship"
+autoload -Uz compinit
+typeset -i updated_at=$(date +%s -r ~/.zcompdump 2>/dev/null || echo 0)
+if [ $(( $(date +%s) - updated_at )) -gt 86400 ]; then
+    compinit
+else
+    compinit -C
+fi
 
-# No delay vim mode goes brrr
+eval "$(fzf --zsh)"
+
+[ -f "$HOME/.config/zsh/fzf-tab/fzf-tab.plugin.zsh" ] && . "$HOME/.config/zsh/fzf-tab/fzf-tab.plugin.zsh"
+
+[ -f "/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh" ] && . "/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
+[ -f "/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ] && . "/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+
+[ -f "$HOME/.config/aliases" ] && . "$HOME/.config/aliases"
+[ -f "$HOME/.config/zsh/functions.zsh" ] && . "$HOME/.config/zsh/functions.zsh"
+[ -f "$HOME/.config/zsh/zsh-vi-mode/zsh-vi-mode.plugin.zsh" ] && . "$HOME/.config/zsh/zsh-vi-mode/zsh-vi-mode.plugin.zsh"
+
+bindkey '^ ' autosuggest-accept
+bindkey -v
 export KEYTIMEOUT=1
 
-# go to project
-fp() {
-    local project_dir
-    project_dir=$(fd '^\.git$' ~/ \
-        --hidden \
-        --no-ignore \
-        --type d \
-        --prune \
-        --exclude '.cache' \
-        --exclude 'node_modules' \
-        --exclude '.local' \
-        2>/dev/null --exec echo {//} | fzf --height 50% --layout=reverse --border)
-    
-    if [ -n "$project_dir" ]; then
-        cd "$project_dir" 
-        zle && zle reset-prompt
-    fi
-}
+setopt prompt_subst
 
-# pass
-pass-fzf() {
-    local target
-    target=$(find ~/.password-store -name "*.gpg" | sed "s|${HOME}/.password-store/||; s|.gpg$||" | fzf)
-    
-    if [ -n "$target" ]; then
-        if pass "$target" | grep -q "^otpauth://"; then
-            pass otp -c "$target"
-        else
-            pass -c "$target"
-        fi
-    fi
-}
+precmd() { print -P "" }
 
-# Zsh widget wrapper
-fp-widget() { fp; }
-pass-fzf-widget() { pass-fzf; }
-zle -N fp-widget
-zle -N pass-fzf
-
-bindkey '^g' fp-widget
-bindkey '^p' pass-fzf
-
-# Load and initialise completion system
-autoload -Uz compinit
-compinit
+PROMPT='%F{#d65d0e}%~%f
+%F{#928374}>%f '

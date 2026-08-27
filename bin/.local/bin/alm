@@ -1,0 +1,19 @@
+#!/bin/sh
+
+# Pastikan parameter waktu sleep diberikan
+if [ -z "$1" ]; then
+  echo "Penggunaan: $0 <waktu_sleep>"
+  echo "Contoh: $0 300 (untuk 5 menit) atau $0 1h (untuk 1 jam)"
+  exit 1
+fi
+
+AUDIO_PATH="$HOME/.local/share/alm/audio.mp3"
+
+echo "Alarm diset dalam $1..."
+sleep "$1"
+
+echo "Waktunya bangun!"
+while true; do
+  mpv --no-input-default-bindings --volume=200 --af=volume=10dB "$AUDIO_PATH"
+  sleep 1
+done

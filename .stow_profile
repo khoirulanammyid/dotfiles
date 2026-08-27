@@ -2,3 +2,8 @@
 # Comment out (#) or delete packages you do not want on this machine.
 zed
 shell
+niri
+alacritty
+mako
+bin
+kitty

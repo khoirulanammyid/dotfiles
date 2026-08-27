@@ -1,0 +1,49 @@
+[font]
+size = 14.0
+offset = { x = 1, y = 1 }
+
+[font.normal]
+family = "FantasqueSansM Nerd Font"
+style = "Regular"
+
+[font.bold]
+family = "FantasqueSansM Nerd Font"
+style = "Bold"
+
+[font.italic]
+family = "FantasqueSansM Nerd Font"
+style = "Italic"
+
+[window]
+padding = { x = 4, y = 4 }
+decorations = "None"
+startup_mode = "Windowed"
+opacity = 1
+
+[colors.primary]
+background = "#26211f"
+foreground = "#d4be98"
+
+[colors.cursor]
+text = "#26211f"
+cursor = "#d4be98"
+
+[colors.normal]
+black = "#322d2a"
+red = "#e58273"      # Pastel Terracotta
+green = "#a9b665"    # Pastel Sage Green
+yellow = "#e8b770"   # Pastel Warm Yellow
+blue = "#7daea3"     # Pastel Soft Blue
+magenta = "#d3869b"  # Pastel Muted Pink/Lavender
+cyan = "#89b482"     # Pastel Seafoam
+white = "#d4be98"
+
+[colors.bright]
+black = "#7c6f64"
+red = "#ea6962"
+green = "#b8bb26"
+yellow = "#e7b084"
+blue = "#83a598"
+magenta = "#d65d0e"
+cyan = "#8ec07c"
+white = "#fbf1c7"

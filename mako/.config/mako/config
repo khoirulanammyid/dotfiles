@@ -1,0 +1,42 @@
+# Global Settings
+font=FantasqueSansM Nerd Font 12
+background-color=#2b2421
+text-color=#ebdbb2
+width=300
+height=100
+margin=10
+padding=12
+border-size=1
+border-color=#4a3b32
+border-radius=0
+icons=true
+max-icon-size=32
+default-timeout=5000
+markup=true
+
+# Normal Notifications
+[urgency=normal]
+border-color=#4a3b32
+background-color=#2b2421
+text-color=#ebdbb2
+
+# Low Priority Notifications
+[urgency=low]
+border-color=#4a3b32
+background-color=#2b2421
+text-color=#928374
+
+# High Priority / Critical Notifications
+[urgency=high]
+border-color=#fb4934
+background-color=#3c2a2a
+text-color=#fbf1c7
+default-timeout=0
+
+[app-name=osd]
+anchor=top-center
+width=160
+default-timeout=1200
+format=<b>%s</b>: %b
+text-alignment=center
+progress-color=#83a598

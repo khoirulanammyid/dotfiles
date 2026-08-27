@@ -1,0 +1,33 @@
+#!/bin/sh
+# ~/.local/bin/brightness-control
+
+# Variabel path skrip OSD dan besar step brightness
+OSD="$HOME/.local/bin/osd"
+STEP="10%"
+
+get_brightness() {
+  brightnessctl --class=backlight -m | awk -F, '{print substr($4, 1, length($4)-1)}'
+}
+
+adjust_brightness() {
+  brightnessctl --class=backlight set "$1"
+}
+
+ACTION="$1"
+
+case "$ACTION" in
+up)
+  adjust_brightness "+${STEP}"
+  bri=$(get_brightness)
+  "$OSD" "Brightness" "${bri}%" "$bri" brightness_osd
+  ;;
+down)
+  adjust_brightness "${STEP}-"
+  bri=$(get_brightness)
+  "$OSD" "Brightness" "${bri}%" "$bri" brightness_osd
+  ;;
+*)
+  echo "Penggunaan: $0 {up|down}"
+  exit 1
+  ;;
+esac

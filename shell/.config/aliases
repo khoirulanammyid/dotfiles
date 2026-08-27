@@ -17,7 +17,7 @@ alias p='sudo pacman'
 alias psyu='sudo pacman -Syu'
 alias porp='sudo pacman -Rns $(pacman -Qdtq)'
 
-alias sv='sudo nvim'
+alias sv='sudo HOME=$HOME XDG_DATA_HOME=$HOME/.local/share XDG_CONFIG_HOME=$HOME/.config nvim'
 alias v='nvim'
 alias vim='nvim'
 alias z='zeditor .'

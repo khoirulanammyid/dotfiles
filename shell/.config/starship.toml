@@ -4,7 +4,6 @@ format = """
 $username\
 $hostname\
 $directory\
-$nix_shell\
 $git_branch\
 $git_state\
 $git_status\
@@ -14,54 +13,38 @@ $python\
 $character"""
 
 [directory]
-style = "fg:83a598" # Biru pastel Gruvbox
-format = "[$path]($style) "
-
-[username]
-style_user = "fg:fabd2f bold" # Kuning hangat Gruvbox
-style_root = "fg:fb4934 bold"
-format = "[$user]($style) "
-show_always = false
-
-[hostname]
-style = "fg:d3869b" # Ungu pastel Gruvbox
-format = "@[$hostname]($style) "
-disabled = false
-
-[nix_shell]
-format = "[$symbol($state)]($style) "
-symbol = "❄️ "
-style = "bold fg:83a598"
-disabled = false
+style = "bold #d79921" # Gruvbox Yellow
 
 [character]
-success_symbol = "[>](fg:b8bb26 bold)" # Hijau pastel Gruvbox
-error_symbol = "[>](fg:fb4934 bold)"   # Merah pastel Gruvbox
-vimcmd_symbol = "[<](fg:fabd2f bold)"
+success_symbol = "[❯](bold #b8bb26)" # Gruvbox Green
+error_symbol = "[❯](bold #fb4934)"   # Gruvbox Red
+vimcmd_symbol = "[❮](bold #fabd2f)"  # Gruvbox Yellow/Orange
 
 [git_branch]
 format = "[$branch]($style)"
-style = "fg:928374 bold" # Abu-abu/cokelat netral Gruvbox
+style = "bold #928374" # Gruvbox Gray
 
 [git_status]
-format = "[[(*$conflicted$untracked$modified$staged$renamed$deleted)](fg:d65d0e) ($ahead_behind$stashed)]($style)"
-style = "fg:83a598"
-conflicted = ""
-untracked = ""
-modified = ""
-staged = ""
-renamed = ""
-deleted = ""
+format = "[[(*$conflicted$untracked$modified$staged$renamed$deleted)](bold #d3869b) ($ahead_behind$stashed)]($style)" # #d3869b = Gruvbox Purple
+style = "#83a598" # Gruvbox Blue
+conflicted = "​"
+untracked = "​"
+modified = "​"
+staged = "​"
+renamed = "​"
+deleted = "​"
 stashed = "≡"
 
 [git_state]
 format = '\([$state( $progress_current/$progress_total)]($style)\) '
-style = "fg:928374"
+style = "bold #928374" # Gruvbox Gray
 
 [cmd_duration]
-format = "[$duration](fg:fabd2f) "
+format = "[$duration]($style) "
+style = "bold #fabd2f" # Gruvbox Yellow
 
 [python]
-format = "[$virtualenv](fg:928374) "
+format = "[$virtualenv]($style) "
+style = "bold #928374" # Gruvbox Gray
 detect_extensions = []
 detect_files = []
