@@ -46,4 +46,4 @@ zle -N fp-widget
 zle -N pass-fzf-widget
 
 bindkey -M viins '^g' fp-widget
-bindkey -M viins '^p' pass-fzf-widget
+bindkey -M viins '^f' pass-fzf-widget

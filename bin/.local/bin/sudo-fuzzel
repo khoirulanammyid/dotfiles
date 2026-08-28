@@ -1,0 +1,19 @@
+#!/bin/sh
+
+if sudo -n true 2>/dev/null; then
+  sudo "$@"
+  echo "sudo-fuzzel: cached"
+else
+  PASS=$(fuzzel --dmenu --password -p "Sudo Password: ")
+  if [ -n "$PASS" ]; then
+    if printf "%s\n" "$PASS" | sudo -S "$@" 2>/dev/null; then
+      echo "sudo-fuzzel: right"
+    else
+      echo "sudo-fuzzel: left"
+      exit 1
+    fi
+  else
+    echo "sudo-fuzzel: aborted"
+    exit 1
+  fi
+fi

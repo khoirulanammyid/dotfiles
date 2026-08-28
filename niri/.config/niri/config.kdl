@@ -56,9 +56,14 @@ animations {
   slowdown 0.66666
 }
 
+blur {
+  off
+}
+
 prefer-no-csd
 
 spawn-at-startup "waybar"
+spawn-sh-at-startup "foot --server"
 spawn-sh-at-startup "oniri --tiling-layout"
 spawn-sh-at-startup "wbg ~/.config/wallpaper.png"
 spawn-sh-at-startup "wl-paste --watch cliphist store"
@@ -75,7 +80,7 @@ window-rule {
 }
 
 window-rule {
-  match app-id="kitty"
+  match app-id="footclient"
   open-maximized false
 }
 
@@ -102,7 +107,7 @@ binds {
   Mod+Shift+Slash { show-hotkey-overlay; }
 
   Mod+W hotkey-overlay-title="Open a Browser: helium-browser" { spawn "helium-browser"; }
-  Mod+Return hotkey-overlay-title="Open a Terminal: kitty" { spawn "kitty"; }
+  Mod+Return hotkey-overlay-title="Open a Terminal: foot" { spawn "footclient"; }
   Mod+D hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
   Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
 
@@ -318,6 +323,9 @@ binds {
 
   // cliphist
   Mod+X allow-when-locked=true { spawn-sh "~/.local/bin/cliphist-fuzzel"; }
+
+  // platform profile
+  Mod+B allow-when-locked=true { spawn-sh "~/.local/bin/switch-profile"; }
 
   // Mirror 
   Mod+P repeat=false { spawn-sh "wl-mirror $(niri msg --json focused-output | jq -r .name)"; }

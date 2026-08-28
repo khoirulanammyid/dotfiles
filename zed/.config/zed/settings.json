@@ -1,4 +1,12 @@
 {
+  "agent_servers": {
+    "antigravity-acp": {
+      "default_config_options": {
+        "mode": "yolo"
+      },
+      "type": "registry"
+    }
+  },
   "theme": "Gruvbox Dark Hard",
   "lsp": {
     "texlab": {

@@ -5,6 +5,6 @@ if pgrep -x "gammastep" >/dev/null; then
   pkill gammastep
   "$OSD" "Gammastep" "OFF" "" gammastep_osd
 else
-  gammastep -O 4500 &
-  "$OSD" "Gammastep" "4500K (ON)" "" gammastep_osd
+  gammastep -O 4500 -g 0.6 &
+  "$OSD" "Gammastep" "4500K Gamma 0.6 (ON)" "" gammastep_osd
 fi

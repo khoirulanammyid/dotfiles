@@ -1,0 +1,32 @@
+#!/bin/sh
+
+PROFILE_FILE="/sys/firmware/acpi/platform_profile"
+CHOICE_FILE="/sys/firmware/acpi/platform_profile_choices"
+SUDO_FUZZEL="$HOME/.local/bin/sudo-fuzzel"
+
+if [ ! -r "$CHOICE_FILE" ] || [ ! -r "$PROFILE_FILE" ]; then
+  notify-send "Power Profile" "please run cat $PROFILE_FILE"
+  exit 1
+fi
+
+CURRENT=$(cat "$PROFILE_FILE")
+
+CHOICES=$(cat "$CHOICE_FILE" | tr ' ' '\n' | while read -r p; do
+  if [ "$p" = "$CURRENT" ]; then
+    printf "> %s (aktif)\n" "$p"
+  else
+    printf "  %s\n" "$p"
+  fi
+done)
+
+SELECTED=$(printf "%s" "$CHOICES" | fuzzel --dmenu -p "Platform Profile: ")
+CHOSEN=$(printf "%s" "$SELECTED" | sed 's/^[>[:space:]]*//; s/ (aktif)$//')
+
+if [ -n "$CHOSEN" ] && [ "$CHOSEN" != "$CURRENT" ]; then
+  if "$SUDO_FUZZEL" sh -c "printf '%s\n' '$CHOSEN' > '$PROFILE_FILE'"; then
+    notify-send "Power Profile" "changed, and be $CHOSEN"
+    echo "change into $CHOSEN"
+  else
+    notify-send "Power Profile" "why change it from $CURRENT into $CHOOSEN? or just wrong password? hope it so..."
+  fi
+fi
