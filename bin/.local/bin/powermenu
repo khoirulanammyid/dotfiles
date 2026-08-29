@@ -38,7 +38,7 @@ case "$chosen" in
   ;;
 *Logout*)
   if confirm "Logout"; then
-    niri msg action quit
+    niri msg action quit -s
   fi
   ;;
 esac
