@@ -49,7 +49,7 @@
   "preferred_line_length": 100,
   "soft_wrap": "bounded",
   "icon_theme": "Colored Zed Icons Theme Dark",
-  "ui_font_family": "JetBrainsMono Nerd Font",
+  "ui_font_family": "FantasqueSansM Nerd Font Mono",
   "agent": {
     "default_width": 550.0,
     "dock": "right",
@@ -91,7 +91,7 @@
       "program": "zsh",
     },
   },
-  "buffer_font_family": "JetBrainsMono Nerd Font",
+  "buffer_font_family": "FantasqueSansM Nerd Font Mono",
   "vim_mode": true,
   "vim": {
     "default_mode": "normal",
