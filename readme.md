@@ -11,7 +11,7 @@ A modular dotfiles deployment configuration managed via GNU Stow.
 | Display | **Niri** — scrolling-tile Wayland compositor |
 | Shell | **zsh** (vi-mode) with **fzf** + fzf-tab, autosuggestions, syntax-highlighting; `bash` fallback |
 | Terminal | **foot** (primary, `footclient`) |
-| Editor | **neovim** (LazyVim) primary, `zed` secondary |
+| Editor | **neovim & zed** yez the last next editor with vim mode|
 | Launcher | **fuzzel** |
 | Status bar | **waybar** |
 | Notifications | **mako** |
