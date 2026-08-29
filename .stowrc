@@ -3,6 +3,7 @@
 --target=$HOME
 
 # Global ignores
+--ignore=.media
 --ignore=.stowrc
 --ignore=.git
 --ignore=.gitignore
