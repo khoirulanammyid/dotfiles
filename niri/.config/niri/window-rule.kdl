@@ -1,0 +1,27 @@
+window-rule {
+  open-maximized true
+  open-maximized-to-edges false
+}
+
+window-rule {
+  match app-id="footclient"
+  open-maximized false
+}
+
+window-rule {
+  match app-id="Waydroid"
+  open-floating false
+  open-maximized-to-edges false
+}
+
+window-rule {
+  match app-id="waydroid.com.whatsapp"
+  open-maximized true
+  open-maximized-to-edges false
+}
+
+layer-rule {
+  match namespace="^notifications$"
+
+  block-out-from "screencast"
+}

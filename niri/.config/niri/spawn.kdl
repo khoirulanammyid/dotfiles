@@ -1,0 +1,8 @@
+// spawn gui things
+spawn-at-startup "waybar"
+
+// sh
+spawn-sh-at-startup "foot --server"
+spawn-sh-at-startup "oniri --tiling-layout"
+spawn-sh-at-startup "wbg ~/.config/wallpaper.png"
+spawn-sh-at-startup "wl-paste --watch cliphist store"

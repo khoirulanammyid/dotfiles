@@ -1,0 +1,17 @@
+input {
+  keyboard {
+    xkb {
+      layout "us"
+      options "caps:escape_shifted_capslock"
+    }
+  }
+
+  touchpad {
+    tap
+    natural-scroll
+    dwt
+    // disabled-on-external-mouse
+  }
+
+  focus-follows-mouse
+}
