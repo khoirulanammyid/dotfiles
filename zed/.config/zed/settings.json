@@ -1,7 +1,18 @@
 {
+  "window_decorations": "server",
+  "title_bar": {
+    "button_layout": ""
+  },
   "agent_servers": {
+    "opencode": {
+      "default_config_options": {
+        "model": "opencode/big-pickle"
+      },
+      "type": "registry"
+    },
     "antigravity-acp": {
       "default_config_options": {
+        "model": "gemini-3.5-flash-extra-low",
         "mode": "yolo"
       },
       "type": "registry"
