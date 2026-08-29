@@ -2,23 +2,9 @@
 //     lid-close { spawn "bash" "-c" "swaylock && systemctl suspend"; }
 // }
 
-input {
-  keyboard {
-    xkb {
-      layout "us"
-      options "caps:escape_shifted_capslock"
-    }
-  }
+include "spawn.kdl"
 
-  touchpad {
-    tap
-    natural-scroll
-    dwt
-    // disabled-on-external-mouse
-  }
-
-  focus-follows-mouse
-}
+include "input.kdl"
 
 layout {
   gaps 12
@@ -62,51 +48,12 @@ blur {
 
 prefer-no-csd
 
-spawn-at-startup "waybar"
-spawn-sh-at-startup "foot --server"
-spawn-sh-at-startup "oniri --tiling-layout"
-spawn-sh-at-startup "wbg ~/.config/wallpaper.png"
-spawn-sh-at-startup "wl-paste --watch cliphist store"
-
-hotkey-overlay {
-  skip-at-startup
-}
-
 screenshot-path "~/Pictures/Screenshots/Screenshot-%Y%m%d%-H%M%S.png"
-
-window-rule {
-  open-maximized true
-  open-maximized-to-edges false
-}
-
-window-rule {
-  match app-id="footclient"
-  open-maximized false
-}
-
-window-rule {
-  match app-id="Waydroid"
-  open-floating false
-  open-maximized-to-edges false
-}
-
-window-rule {
-  match app-id="waydroid.com.whatsapp"
-  open-maximized true
-  open-maximized-to-edges false
-}
-
-layer-rule {
-  match namespace="^notifications$"
-
-  block-out-from "screencast"
-}
-
 
 binds {
   Mod+Shift+Slash { show-hotkey-overlay; }
 
-  Mod+W hotkey-overlay-title="Open a Browser: helium-browser" { spawn "helium-browser"; }
+  Mod+E hotkey-overlay-title="Open a Browser: helium-browser" { spawn "helium-browser"; }
   Mod+Return hotkey-overlay-title="Open a Terminal: foot" { spawn "footclient"; }
   Mod+D hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
   Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
@@ -127,7 +74,6 @@ binds {
   XF86MonBrightnessDown allow-when-locked=true { spawn-sh "~/.local/bin/brightness-control down"; }
 
   Mod+O repeat=false { toggle-overview; }
-
   Mod+Q repeat=false { close-window; }
 
   Mod+Left  { focus-column-left; }
@@ -173,10 +119,6 @@ binds {
 
   Mod+Page_Down      { focus-workspace-down; }
   Mod+Page_Up        { focus-workspace-up; }
-  // Mod+U              { focus-workspace-down; }
-  // Mod+I              { focus-workspace-up; }
-  Mod+Ctrl+Page_Down { move-column-to-workspace-down; }
-  Mod+Ctrl+Page_Up   { move-column-to-workspace-up; }
   Mod+Ctrl+U         { move-column-to-workspace-down; }
   Mod+Ctrl+I         { move-column-to-workspace-up; }
 
@@ -200,23 +142,6 @@ binds {
   Mod+Ctrl+Shift+WheelScrollDown { move-column-right; }
   Mod+Ctrl+Shift+WheelScrollUp   { move-column-left; }
 
-  // Similarly, you can bind touchpad scroll "ticks".
-  // Touchpad scrolling is continuous, so for these binds it is split into
-  // discrete intervals.
-  // These binds are also affected by touchpad's natural-scroll, so these
-  // example binds are "inverted", since we have natural-scroll enabled for
-  // touchpads by default.
-  // Mod+TouchpadScrollDown { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.02+"; }
-  // Mod+TouchpadScrollUp   { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.02-"; }
-
-  // You can refer to workspaces by index. However, keep in mind that
-  // niri is a dynamic workspace system, so these commands are kind of
-  // "best effort". Trying to refer to a workspace index bigger than
-  // the current workspace count will instead refer to the bottommost
-  // (empty) workspace.
-  //
-  // For example, with 2 workspaces + 1 empty, indices 3, 4, 5 and so on
-  // will all refer to the 3rd workspace.
   Mod+1 { focus-workspace 1; }
   Mod+2 { focus-workspace 2; }
   Mod+3 { focus-workspace 3; }
@@ -236,15 +161,8 @@ binds {
   Mod+Ctrl+8 { move-column-to-workspace 8; }
   Mod+Ctrl+9 { move-column-to-workspace 9; }
 
-  // Alternatively, there are commands to move just a single window:
-  // Mod+Ctrl+1 { move-window-to-workspace 1; }
-
-  // Switches focus between the current and the previous workspace.
   Mod+Tab { focus-workspace-previous; }
 
-  // The following binds move the focused window in and out of a column.
-  // If the window is alone, they will consume it into the nearby column to the side.
-  // If the window is already in a column, they will expel it out.
   Mod+BracketLeft  { consume-or-expel-window-left; }
   Mod+BracketRight { consume-or-expel-window-right; }
 
@@ -253,9 +171,7 @@ binds {
   // Expel the bottom window from the focused column to the right.
   Mod+Period { expel-window-from-column; }
 
-  // Cycle through widths set in preset-column-widths.
   Mod+R { switch-preset-column-width; }
-  // Cycling through the presets in reverse order is also possible.
   Mod+Shift+R { switch-preset-column-width-back; }
 
   Mod+Ctrl+Shift+R { switch-preset-window-height; }
@@ -265,44 +181,23 @@ binds {
   Mod+Shift+F { fullscreen-window; }
   Mod+Ctrl+Shift+F { toggle-windowed-fullscreen; }
 
-  // While maximize-column leaves gaps and borders around the window,
-  // maximize-window-to-edges doesn't: the window expands to the edges of the screen.
-  // This bind corresponds to normal window maximizing,
-  // e.g. by double-clicking on the titlebar.
   Mod+M { maximize-window-to-edges; }
 
-  // Expand the focused column to space not taken up by other fully visible columns.
-  // Makes the column "fill the rest of the space".
   Mod+Ctrl+F { expand-column-to-available-width; }
 
   Mod+C { center-column; }
-
-  // Center all fully visible columns on screen.
   Mod+Ctrl+C { center-visible-columns; }
 
-  // Finer width adjustments.
-  // This command can also:
-  // * set width in pixels: "1000"
-  // * adjust width in pixels: "-5" or "+5"
-  // * set width as a percentage of screen width: "25%"
-  // * adjust width as a percentage of screen width: "-10%" or "+10%"
-  // Pixel sizes use logical, or scaled, pixels. I.e. on an output with scale 2.0,
-  // set-column-width "100" will make the column occupy 200 physical screen pixels.
   Mod+Minus { set-column-width "-10%"; }
   Mod+Equal { set-column-width "+10%"; }
 
-  // Finer height adjustments when in column with other windows.
   Mod+Shift+Minus { set-window-height "-10%"; }
   Mod+Shift+Equal { set-window-height "+10%"; }
 
-  // Move the focused window between the floating and the tiling layout.
   Mod+V       { toggle-window-floating; }
   Mod+Shift+V { switch-focus-between-floating-and-tiling; }
 
-  // Toggle tabbed column display mode.
-  // Windows in this column will appear as vertical tabs,
-  // rather than stacked on top of each other.
-  Mod+Shift+W { toggle-column-tabbed-display; }
+  Mod+W { toggle-column-tabbed-display; }
 
   Print { screenshot; }
   Ctrl+Print { screenshot-screen; }
@@ -310,15 +205,17 @@ binds {
 
   Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
 
-  Mod+Shift+E { spawn-sh "~/.local/bin/powermenu"; }
   Ctrl+Alt+Delete { quit; }
 
   Mod+Shift+P { power-off-monitors; }
 
+  // powermenu
+  Mod+Shift+E { spawn-sh "~/.local/bin/powermenu"; }
+
   // Toggle gammastep
   Mod+shift+N allow-when-locked=true { spawn-sh "~/.local/bin/toggle-gammastep"; }
 
-  // Color Picker 
+  // Color Picker
   Mod+shift+C { spawn-sh "~/.local/bin/color-picker"; }
 
   // cliphist
@@ -327,9 +224,15 @@ binds {
   // platform profile
   Mod+B allow-when-locked=true { spawn-sh "~/.local/bin/switch-profile"; }
 
-  // Mirror 
+  // Mirror
   Mod+P repeat=false { spawn-sh "wl-mirror $(niri msg --json focused-output | jq -r .name)"; }
 
+}
+
+include "window-rule.kdl"
+
+hotkey-overlay {
+  skip-at-startup
 }
 
 layer-rule {
