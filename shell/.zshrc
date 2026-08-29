@@ -29,3 +29,7 @@ precmd() { print -P "" }
 
 PROMPT='%F{#d65d0e}%~%f
 %F{#928374}>%f '
+
+if [ -z "$DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ]; then
+    exec niri-session
+fi
