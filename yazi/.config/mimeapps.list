@@ -1,0 +1,27 @@
+[Default Applications]
+# Browser (helium)
+x-scheme-handler/http=helium.desktop
+x-scheme-handler/https=helium.desktop
+
+# Text Editor (nvim)
+text/plain=nvim.desktop
+text/markdown=nvim.desktop
+application/x-shellscript=nvim.desktop
+
+# Image Viewer (imv)
+image/jpeg=imv.desktop
+image/png=imv.desktop
+image/webp=imv.desktop
+image/gif=imv.desktop
+image/avif=imv.desktop
+
+# Video Player (mpv)
+video/mp4=mpv.desktop
+video/x-matroska=mpv.desktop
+video/webm=mpv.desktop
+video/quicktime=mpv.desktop
+audio/mpeg=mpv.desktop
+audio/flac=mpv.desktop
+
+# pdf viewer (zathura)
+application/pdf=org.pwmt.zathura.desktop

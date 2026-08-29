@@ -1,0 +1,75 @@
+* {
+    font-family: "FantasqueSansM Nerd Font", monospace;
+    font-size: 12pt;
+    font-weight: bold;
+    min-height: 0;
+    border: none;
+    border-radius: 0;
+}
+
+window#waybar {
+    background: #121212;
+    color: #ebdbb2;
+    border-bottom: 1px solid #3c3836;
+}
+
+#workspaces button {
+    padding: 0 8px;
+    background: #121212;
+    color: #7c6f64;
+    border-right: 1px solid #3c3836;
+}
+
+#workspaces button.active {
+    background: #458588;
+    color: #fbf1c7;
+}
+
+#workspaces button:hover {
+    background: #3c3836;
+    color: #ebdbb2;
+}
+
+#window {
+    padding-left: 10px;
+    color: #bdae93;
+}
+
+#wireplumber,
+#backlight,
+#battery,
+#network,
+#tray,
+#clock {
+    padding: 0 8px;
+    background: #121212;
+    color: #ebdbb2;
+    border-left: 1px solid #3c3836;
+}
+
+#clock {
+    color: #fabd2f;
+}
+
+#battery.warning {
+    color: #fb4934;
+}
+
+#battery.charging {
+    color: #b8bb26;
+}
+
+#idle_inhibitor {
+    padding: 0 8px;
+    background: #26211f;
+    color: #d4be98;
+    border-left: 1px solid #3d3532;
+}
+
+#idle_inhibitor.activated {
+    color: #a9b665; /* Hijau Pastel saat aktif */
+}
+
+#idle_inhibitor.deactivated {
+    color: #7c6f64; /* Abu-abu redup saat mati */
+}

@@ -1,0 +1,18 @@
+[plugin]
+prepend_previewers = [
+	# Allmytoes doesn't handle these by default
+	{ mime = "image/svg+xml", run = "magick" },
+	{ mime = "image/heic",    run = "magick" },
+	{ mime = "image/jxl",     run = "magick" },
+	# Handle other image types with allmytoes
+	{ mime = "image/*", run = "allmytoes" },
+]
+
+prepend_preloaders = [
+	# Allmytoes doesn't handle these by default
+	{ mime = "image/svg+xml", run = "magick" },
+	{ mime = "image/heic",    run = "magick" },
+	{ mime = "image/jxl",     run = "magick" },
+	# Handle other image types with allmytoes
+	{ mime = "image/*", run = "allmytoes" },
+]
