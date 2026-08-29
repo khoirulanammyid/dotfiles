@@ -5,7 +5,7 @@ PROFILE_FILE = stowprofile
 ifneq ($(wildcard $(PROFILE_FILE)),)
     PACKAGES = $(shell grep -v '^#' $(PROFILE_FILE) | tr '\n' ' ')
 else
-    PACKAGES = $(shell find . -maxdepth 1 -type d -not -name '.' -not -name '.git' -exec basename {} \;)
+    PACKAGES = $(shell find . -maxdepth 1 -type d ! -name '.*' -exec basename {} \;)
 endif
 
 # Default target changed to helper manual
@@ -37,7 +37,7 @@ helper:
 profile:
 	@echo "# Edit this file to select packages to manage." > $(PROFILE_FILE)
 	@echo "# Comment out (#) or delete packages you do not want on this machine." >> $(PROFILE_FILE)
-	@for dir in $(shell find . -maxdepth 1 -type d -not -name '.' -not -name '.git' -exec basename {} \;); do \
+	@for dir in $(shell find . -maxdepth 1 -type d ! -name '.*' -exec basename {} \;); do \
 		echo "$$dir" >> $(PROFILE_FILE); \
 	done
 	@echo "Generated $(PROFILE_FILE) with available packages."

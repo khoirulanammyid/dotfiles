@@ -4,6 +4,28 @@ A modular dotfiles deployment configuration managed via GNU Stow.
 
 ![Screenshot](.media/1.png)
 
+## Specification
+
+| Component | Choice |
+| :--- | :--- |
+| Display | **Niri** — scrolling-tile Wayland compositor |
+| Shell | **zsh** (vi-mode) with **fzf** + fzf-tab, autosuggestions, syntax-highlighting; `bash` fallback |
+| Terminal | **foot** (primary, `footclient`) |
+| Editor | **neovim** (LazyVim) primary, `zed` secondary |
+| Launcher | **fuzzel** |
+| Status bar | **waybar** |
+| Notifications | **mako** |
+| Screen locker | **swaylock** |
+| File manager | **yazi** |
+| Clipboard | **cliphist** + `wl-clipboard` |
+| Music | **mpd** + `rmpc`, `kew` player |
+| Wallpaper | **wbg** (`~/.config/wallpaper.png`, shipped in the niri package) |
+| Browser / pager | `firefox`, `less` |
+| Color scheme | **Gruvbox-like pastel** — `#d4be98` foreground on `#26211f`, soft blue/green/red accents |
+| Font | **FantasqueSansM Nerd Font** (14pt terminals, 18pt editors) |
+| Keymap | US layout, `caps` → escape/ctrl (`caps:escape_shifted_capslock`) |
+| Extras | Custom `~/.local/bin` scripts: OSD volume/brightness, powermenu, color picker, gammastep toggle, cliphist picker, power-profile switcher |
+
 ## Dependencies
 
 Base requirements:
@@ -17,13 +39,11 @@ config to be useful:
 
 | Package | Software |
 | :--- | :--- |
-| `alacritty` | `alacritty` terminal |
 | `bin` | Custom scripts under `~/.local/bin`: `fuzzel`, `cliphist`, `wl-clipboard` (`wl-copy`/`wl-paste`), `brightnessctl`, `wireplumber` (`wpctl`), `grim`, ImageMagick (`magick`), `slurp`, `jq`, `mpv`, `gammastep`, `libnotify` (`notify-send`), `playerctl`, `systemd`, `sudo` |
 | `fonts` | Fantasque Sans Mono Nerd Font, stow'd to `~/.local/share/fonts` (XDG dir, auto-scanned by fontconfig) |
 | `foot` | `foot` terminal + `footclient` |
 | `fuzzel` | `fuzzel` launcher |
 | `kew` | `kew` terminal music player |
-| `kitty` | `kitty` terminal |
 | `mako` | `mako` notification daemon (used by the `osd` script) |
 | `music` | `mpd`, `rmpc` UI, PulseAudio/PipeWire output |
 | `neovim` | `neovim` (LazyVim) – lazy-loader bootstraps `git`; `ripgrep`/`fd` recommended |
