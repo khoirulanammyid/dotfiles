@@ -1,20 +1,10 @@
-# Yeet another Dotfiles
+# My Dotfiles
 
 A modular dotfiles deployment configuration managed via GNU Stow.
 
 ## Dependencies
 
 Ensure the following system packages are installed before deploying:
-
-| Dependency | Purpose | Minimum Requirement |
-| :--- | :--- | :--- |
-| `stow` | Core symlink farm manager | GNU Stow v2.3.0+ |
-| `fd` | Fast directory traversal engine | Alternative to standard `find` |
-| `fzf` | Interactive fuzzy finder | Used for quick project jumping |
-| `make` | Task automation runner | Standard GNU Make |
-| `zap` | zsh plugin manager | for managing zsh plugins |
-| `eza` | File listing utility | required for zsh plugin |
-| `starship` | Prompt utility | required for zsh plugin |
 
 ## Quick Start Deployment Tutorial
 
@@ -32,12 +22,12 @@ Run the `make profile` command to set up your profile:
 ```bash
 make profile
 ```
-This generates a .stow_profile file listing all available packages.
+This generates a `stowprofile` file listing all available packages.
 
 ### Step 3: Customize Packages (Optional)
-Edit the `.stow_profile` file to customize which packages are deployed.
+Edit the `stowprofile` file to customize which packages are deployed.
 ```bash
-nvim .stow_profile 
+nvim stowprofile 
 ```
 Example: 
 ```bash
@@ -47,7 +37,7 @@ shell
 
 ### Step 4: Deploy
 ```bash
-make check  # Safe preview of what will happen
+make check  # Dry run, checking what stow doin
 make link   # Deploy files to your home directory
 ```
 
@@ -55,7 +45,7 @@ make link   # Deploy files to your home directory
 
 | Command | Action |
 | :--- | :--- |
-| `make profile` | Scan root directory and generate local `.stow_profile` |
+| `make profile` | Scan root directory and generate local `stowprofile` |
 | `make link` | Deploy active profile configurations as symlinks to `~` |
 | `make unlink` | Purge deployed symlinks cleanly from `~` |
 | `make relink` | Refresh deployment state (`unlink` followed immediately by `link`) |
