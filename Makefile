@@ -1,6 +1,6 @@
 # Variables
 STOW_CMD = stow
-PROFILE_FILE = .stow_profile
+PROFILE_FILE = stowprofile
 
 ifneq ($(wildcard $(PROFILE_FILE)),)
     PACKAGES = $(shell grep -v '^#' $(PROFILE_FILE) | tr '\n' ' ')
@@ -21,7 +21,7 @@ helper:
 	@echo "Usage: make <target>"
 	@echo ""
 	@echo "Available Targets:"
-	@echo "  profile   Scan root directory and generate local '.stow_profile'"
+	@echo "  profile   Scan root directory and generate local 'stowprofile'"
 	@echo "  link      Deploy active profile configurations as symlinks to ~"
 	@echo "  unlink    Purge deployed symlinks cleanly from ~"
 	@echo "  relink    Refresh deployment state (unlink followed by link)"

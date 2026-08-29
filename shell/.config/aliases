@@ -76,4 +76,4 @@ alias gpgenc="gpg --symmetric --cipher-algo AES256"
 alias gpgdec="gpg --decrypt"
 
 # realpath, no link
-alias nolink="echo $(realpath $(find . -maxdepth 1 -type f -not -type l))"
+alias nolink="find . -maxdepth 1 -type f -not -type l -exec realpath {} + 2>/dev/null"
