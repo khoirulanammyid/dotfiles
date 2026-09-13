@@ -1,3 +1,3 @@
-require("full-border"):setup({
-	type = ui.Border.PLAIN,
-})
+require("allmytoes"):setup {
+    sizes = {"n", "l", "x", "xx"},
+}
