@@ -1,16 +1,15 @@
 # Edit this file to select packages to manage.
 # Comment out (#) or delete packages you do not want on this machine.
+yazi
 zed
-shell
-niri
-mako
-bin
-foot
-fuzzel
+waybar
+swaylock
+fonts
 neovim
 music
-swaylock
-waybar
-yazi
-kew
-fonts
+shell
+mako
+niri
+fuzzel
+foot
+bin
