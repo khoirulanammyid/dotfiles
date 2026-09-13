@@ -2,6 +2,7 @@
 spawn-at-startup "waybar"
 
 // sh
+spawn-sh-at-startup "pipewire"
 spawn-sh-at-startup "foot --server"
 spawn-sh-at-startup "oniri --tiling-layout"
 spawn-sh-at-startup "wbg ~/.config/wallpaper.png"
