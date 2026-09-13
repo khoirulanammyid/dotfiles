@@ -35,7 +35,7 @@ default-timeout=0
 
 [app-name=osd]
 anchor=top-center
-width=160
+width=300
 default-timeout=1200
 format=<b>%s</b>: %b
 text-alignment=center
