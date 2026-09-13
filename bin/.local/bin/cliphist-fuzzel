@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 thumbnail_dir="${XDG_CACHE_HOME:-$HOME/.cache}/cliphist/thumbnails"
 
 cliphist_list=$(cliphist list)
