@@ -38,7 +38,7 @@ layout {
 }
 
 animations {
-  slowdown 0.33333
+  off
 }
 
 blur {

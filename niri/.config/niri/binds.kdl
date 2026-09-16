@@ -175,6 +175,8 @@ binds {
   // platform profile
   Mod+B allow-when-locked=true { spawn-sh "~/.local/bin/switch-profile"; }
 
+  Mod+Ctrl+Shift+B allow-when-locked=true { spawn-sh "pkill -SIGUSR1 waybar"; }
+
   // Mirror
   Mod+P repeat=false { spawn-sh "wl-mirror $(niri msg --json focused-output | jq -r .name)"; }
 

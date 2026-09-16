@@ -1,0 +1,23 @@
+#!/bin/sh
+
+osc7_cd() {
+    cd "$@" || return $?
+
+	local tmp="$PWD"
+	local enc
+    while [ -n "$tmp" ]; do
+        local cut="${tmp#?}"
+        local c="${tmp%"$cut"}"
+        case "$c" in
+            [-/:_.!\'\(\)~[:alnum:]] ) enc="$enc$c" ;;
+            * ) enc="$enc$(printf '%%%02X' """\"$c")"  ;;
+        esac
+        tmp="$cut"
+    done
+
+    printf "\033]7;file://%s%s\033\\" "$(hostname)" "$enc"
+}
+
+osc7_cd "$PWD" # first-run
+alias cd=osc7_cd
+

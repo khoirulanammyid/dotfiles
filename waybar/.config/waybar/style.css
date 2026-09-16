@@ -5,32 +5,26 @@
     min-height: 0;
     border: 0;
     border-radius: 0;
-    /* Smooth transition for active states and hovers */
-    transition: all 0.1s ease-in-out;
-}
-
-/* --- LOAD UP ANIMATION (GTK3 Compatible) --- */
-@keyframes slideDown {
-    from {
-        margin-top: -50px; /* Start shifted up off-screen */
-        opacity: 0;
-    }
-    to {
-        margin-top: 0;     /* Slide into natural position */
-        opacity: 1;
-    }
 }
 
 window#waybar {
     background: #181512;
     color: #d4be98;
     border: 2px solid #d4be98;
-    
-    /* Applies the 0.5-second smooth slide down animation on startup */
-    animation: slideDown 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-/* --- WORKSPACES (Gaya DWM) --- */
+#mpd,
+#wireplumber,
+#battery,
+#network,
+#tray,
+#clock,
+#idle_inhibitor {
+    padding: 0 10px;
+    color: #d4be98;
+    background: transparent;
+}
+
 #workspaces {
     background: transparent;
 }
@@ -52,30 +46,19 @@ window#waybar {
     color: #a89984;
 }
 
-/* --- MODULES KANAN --- */
-#wireplumber,
-#backlight,
-#battery,
-#network,
-#tray,
-#clock,
-#idle_inhibitor {
-    padding: 0 10px;
-    color: #d4be98;
-    background: transparent;
+#mpd {
+    color: #e8c6a9;
 }
+
+#bluetooth {
+    color: #e8c6a9;
+}
+
 
 #clock {
-    background: #3c322b; 
     color: #e8c6a9;
-    padding: 0 15px;
-    border-top: 2px solid #d4be98;
-    border-bottom: 2px solid #d4be98;
-    border-right: 2px solid #d4be98;
-    border-left: 0;
 }
 
-/* Indikator Status */
 #battery.charging {
     color: #a9b665;
 }
@@ -87,15 +70,5 @@ window#waybar {
 
 #network.disconnected {
     color: #ea6962;
-}
-
-/* Inverse gaya DWM saat diaktifkan */
-#idle_inhibitor.activated {
-    color: #181512;
-    background: #d4be98;
-}
-
-#idle_inhibitor.deactivated {
-    color: #7c6f64;
 }
 

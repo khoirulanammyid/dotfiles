@@ -1,0 +1,51 @@
+#!/bin/sh 
+
+set -o vi
+export HISTFILE=$HOME/.config/ksh/ksh_history
+export HISTSIZE=5000
+export HISTCONTROL=ignoredups
+
+# reload shell
+alias src='exec ksh'
+
+# quality of life
+. "$HOME/.config/shell/aliases"
+. "$HOME/.config/shell/niri-tty1"
+. "$HOME/.config/shell/distrobox-prompt"
+. "$HOME/.config/shell/foot-integration"
+. "$HOME/.config/shell/go-to-project"
+. "$HOME/.config/shell/xbps"
+. "$HOME/.config/shell/yazi"
+
+PS1='\u@\h: \w
+> '
+
+fzf-history() {
+    RES=$(fc -ln -r -5000 | fzf --scheme=history)
+    test -n "$RES" || return 0
+    print -s "$RES"
+    eval "$RES"
+}
+
+alias h=fzf-history
+
+catch() {
+    if [ -z "$1" ]; then
+        echo "Usage: catch <command>"
+        return 1
+    fi
+
+    tmplog=$(mktemp)
+
+    script -q -c "oksh -i -c 'time $*'" "$tmplog"
+
+    sed -E -e 's/\x1b\[[0-9;]*[mK]//g' \
+            -e 's/\x1b\]7;file:[^[:space:]\\]*//g' \
+            -e 's/\x0d//g' "$tmplog" | nvim -
+
+    rm -f "$tmplog"
+}
+
+# pyenv things
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"

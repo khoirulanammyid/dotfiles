@@ -3,23 +3,31 @@
     "position": "top",
     "height": 24,
     "spacing": 0,
-    "margin-top": 16,
-    "margin-left": 16,
-    "margin-right": 16,
-    "margin-bottom": 0,
+    "margin-top": 8,
+    "margin-left": 400,
+    "margin-right": 400,
     "modules-left": [
-        "niri/workspaces",
-        "niri/window"
+        "niri/workspaces"
     ],
-    "modules-center": [],
+    "modules-center": [
+        "clock"
+    ],
     "modules-right": [
         "wireplumber#sink",
-        "backlight",
+        "bluetooth",
         "network",
         "tray",
         "battery",
-        "clock"
     ],
+    "bluetooth": {
+        "format": "",
+        "format-connected": " {device_alias}",
+        "format-connected-battery": " {device_alias} {device_battery_percentage}%",
+        "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+        "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+        "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%"
+    },
     "niri/workspaces": {
         "format": "{index}",
         "all-outputs": true,
@@ -30,9 +38,17 @@
             "urgent": ""
         }
     },
-    "niri/window": {
-        "format": "{title}",
-        "max-length": 80
+    "mpd": {
+        "format": "󰎆 {stateIcon} {artist} - {title}",
+        "format-disconnected": "󰎆 disconnected",
+        "format-stopped": "󰎆 stopped",
+        "max-length": 40,
+        "stateIcon": {
+            "paused": "󰏤",
+            "playing": "󰐊"
+        },
+        "tooltip-format": "MPD (connected)",
+        "tooltip-format-disconnected": "MPD (disconnected)"
     },
     "clock": {
         "format": "{:%a %b %d %H:%M}",
@@ -77,10 +93,6 @@
         "format-icons": ["󰕿", "󰖀", "󰕾"],
         "on-right-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
         "on-click": "footclient -e wiremix"
-    },
-    "backlight": {
-        "format": "󰃛 {percent}%",
-        "on-click": "toggle-gammastep"
     },
     "tray": {
         "icon-size": 14,

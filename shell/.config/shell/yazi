@@ -1,0 +1,12 @@
+#!/bin/sh
+
+y() {
+    typeset tmp cwd
+    tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+    command yazi "$@" --cwd-file="$tmp"
+    if [[ -f "$tmp" ]]; then
+        cwd="$(cat "$tmp")"
+        [[ -n "$cwd" && "$cwd" != "$PWD" && -d "$cwd" ]] && builtin cd -- "$cwd"
+        command rm -f -- "$tmp"
+    fi
+}

@@ -1,7 +1,10 @@
+#!/bin/sh 
+
 alias ..='cd ..'
 alias ...='cd ../..'
 alias .3='cd ../../../'
 alias .4='cd ../../../../'
+
 alias l='ls -lah'
 alias la='ls -A'
 alias ll='ls -l'
@@ -27,6 +30,7 @@ alias dcu='docker-compose up -d'
 alias dcd='docker-compose down'
 alias dcl='docker-compose logs -f'
 
+alias g='git'
 alias gs='git status'
 alias ga='git add'
 alias gaa='git add .'
@@ -37,22 +41,16 @@ alias gpull='git pull'
 alias gf='git fetch'
 alias gl='git log --oneline --graph --all'
 
-alias df='df -h'
-alias free='free -m'
-alias myip='curl ifconfig.me'
+alias myip='curl ifconfig.me && echo'
 alias mirrorupd='sudo reflector --latest 10 --protocol https --sort rate --save /etc/pacman.d/mirrorlist'
 alias jctl='journalctl -p 3 -xb'
 
 alias cp='cp -iv'
 alias mv='mv -iv'
 alias rm='rm -iv'
-alias chown='chown --preserve-root'
-alias chmod='chmod --preserve-root'
 
-alias src='source ~/.zprofile && source ~/.zshrc && echo "Zsh config reloaded!"'
 alias vsrc='nvim ~/.zshrc'
 alias valias='nvim ~/.config/aliases'
-alias dot='cd ~/.config/dotfiles'
 
 # Service
 alias service='sudo systemctl' 
@@ -64,6 +62,7 @@ alias enable='sudo systemctl enable --now'
 alias disable='sudo systemctl disable --now' 
 
 # Dotfiles management aliases
+alias dot='cd ~/.config/dotfiles'
 alias dots="make -C ~/.config/dotfiles"
 alias dotl="make -C ~/.config/dotfiles link"
 alias dotu="make -C ~/.config/dotfiles unlink"
@@ -77,4 +76,7 @@ alias gpgdec="gpg --decrypt"
 # realpath, no link
 alias nolink="find . -maxdepth 1 -type f -not -type l -exec realpath {} + 2>/dev/null"
 
-alias x="sudo xbps-install"
+# xbps things
+alias xi="sudo xbps-install"
+alias xr="sudo xbps-remove"
+alias xq="xbps-query"

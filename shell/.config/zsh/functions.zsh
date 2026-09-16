@@ -4,10 +4,6 @@ fp() {
         --hidden --no-ignore --type d --prune \
         --exclude '{.cache,node_modules,.local}' \
         2>/dev/null --exec echo {//} | fzf --height 50% --layout=reverse --border)
-    
-    if [[ -n "$project_dir" ]]; then
-        cd "$project_dir" && zle && zle reset-prompt
-    fi
 }
 
 pass-fzf() {
@@ -30,6 +26,25 @@ y() {
     IFS= read -r -d '' cwd < "$tmp"
     [[ "$cwd" != "$PWD" ]] && [[ -d "$cwd" ]] && builtin cd -- "$cwd"
     command rm -f -- "$tmp"
+}
+
+xbps-in() {
+    xbps-query -Rs '*' | \
+    fzf -m --prompt="Install package: " \
+        --preview 'echo {} | awk "{print \$2}" | xargs xq' \
+        --preview-window=right:60%:wrap | \
+    awk '{print $2}' | \
+    xargs -ro sudo xbps-install -S
+}
+
+# Fixed: Interactive Uninstaller
+xbps-rm() {
+    xbps-query -m | \
+    fzf -m --prompt="Remove package: " \
+        --preview 'echo {} | awk "{print \$2}" | xargs xq' \
+        --preview-window=right:60%:wrap | \
+    awk '{print $2}' | \
+    xargs -ro sudo xbps-remove -R
 }
 
 fp-widget() { 

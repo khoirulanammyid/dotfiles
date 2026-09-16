@@ -24,7 +24,7 @@ case "$chosen" in
   swaylock
   ;;
 *Suspend*)
-  systemctl suspend
+  zzz
   ;;
 *Reboot*)
   if confirm "Reboot"; then
