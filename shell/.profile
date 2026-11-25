@@ -1,14 +1,14 @@
 #ksh 
-export ENV=$HOME/.config/ksh/kshrc
+#export ENV=$HOME/.config/ksh/kshrc
 
 #service 
-export SVDIR=~/service
+#export SVDIR=~/service
 
 # Editor & Pager
 export EDITOR="nvim"
 export VISUAL="nvim"
 export PAGER="less"
-export BROWSER="firefox"
+export BROWSER="helium-browser"
 export TERMINAL="footclient"
 
 # Locale
@@ -20,6 +20,13 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_STATE_HOME="$HOME/.local/state"
+
+# Theming GTK
+export GTK_THEME=Adwaita-dark
+
+# Theming QT
+export QT_STYLE_OVERRIDE=Fusion
+export QT_QPA_PLATFORMTHEME=gtk3
 
 # local/bin
 export PATH="$HOME/.local/bin:$PATH"

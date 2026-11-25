@@ -3,7 +3,7 @@
 xin() {
     xbps-query -Rs '*' | awk '$1 !~ /\[\*\]/' | \
     fzf -m --prompt="Install package: " \
-        --preview 'echo {} | awk "{print \$2}" | xargs xq' \
+        --preview 'xbps-query -RS {2}' \
         --preview-window=right:60%:wrap | \
     awk '{print $2}' | \
     xargs -ro sudo xbps-install -S

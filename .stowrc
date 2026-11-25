@@ -1,5 +1,5 @@
 # Default paths
---dir=$HOME/.config/dotfiles
+--dir=$HOME/dotfiles
 --target=$HOME
 
 # Global ignores

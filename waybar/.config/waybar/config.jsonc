@@ -3,9 +3,6 @@
     "position": "top",
     "height": 24,
     "spacing": 0,
-    "margin-top": 8,
-    "margin-left": 400,
-    "margin-right": 400,
     "modules-left": [
         "niri/workspaces"
     ],

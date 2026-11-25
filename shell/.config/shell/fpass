@@ -1,0 +1,24 @@
+#!/bin/sh 
+
+fpass() {
+    local target secret
+    local store_dir="${PASSWORD_STORE_DIR:-$HOME/.password-store}"
+
+    target=$(find "$store_dir" -type f -name "*.gpg" | \
+        sed "s|$store_dir/||;s|\.gpg$||" | \
+        sort | \
+        fzf --prompt="Pass/OTP: ")
+
+    [[ -z "$target" ]] && return
+
+    if [[ "$target" == otp/* ]]; then
+        secret=$(pass otp "$target" | tr -d '\n')
+    else
+        secret=$(pass show "$target" | head -n 1 | tr -d '\n')
+    fi
+
+    [[ -z "$secret" ]] && return
+
+    printf '%s' "$secret" | wl-copy
+    echo "'$target' pass has been copied into clipboard."
+}

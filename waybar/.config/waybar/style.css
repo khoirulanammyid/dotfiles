@@ -2,6 +2,7 @@
     font-family: "FantasqueSansM Nerd Font", monospace;
     font-size: 16px;
     font-weight: bold;
+    min-width: 0;
     min-height: 0;
     border: 0;
     border-radius: 0;
@@ -10,7 +11,6 @@
 window#waybar {
     background: #181512;
     color: #d4be98;
-    border: 2px solid #d4be98;
 }
 
 #mpd,
@@ -30,12 +30,14 @@ window#waybar {
 }
 
 #workspaces button {
+    min-width: 0;
     padding: 0 8px;
     color: #7c6f64;
     background: transparent;
 }
 
-#workspaces button.active {
+#workspaces button.active,
+#workspaces button.focused {
     background: #d4be98;
     color: #181512; 
 }
