@@ -7,5 +7,6 @@
   "telescope.nvim": { "branch": "master", "commit": "5255aa27c422de944791318024167ad5d40aad20" },
   "tree-sitter-manager.nvim": { "branch": "main", "commit": "05c2328f1ffd84f1944f9ff9aeb0d5032c6e5c1e" },
   "undotree": { "branch": "master", "commit": "6fa6b57cda8459e1e4b2ca34df702f55242f4e4d" },
-  "vim-fugitive": { "branch": "master", "commit": "96c1009fcf8ce60161cc938d149dd5a66d570756" }
+  "vim-fugitive": { "branch": "master", "commit": "96c1009fcf8ce60161cc938d149dd5a66d570756" },
+  "vimtex": { "branch": "master", "commit": "90cd6619728df9f6161e5691ac247f0fe3437462" }
 }
