@@ -5,7 +5,7 @@ include "layer-rules.kdl"
 include "binds.kdl"
 
 layout {
-  gaps 8
+  gaps 0
   center-focused-column "never"
   always-center-single-column
   background-color "transparent"
@@ -20,7 +20,7 @@ layout {
   border {
     on
     width 2
-    inactive-color "#7c6f64"
+    inactive-color "#181512"
     active-color "#D4BE98"
   }
 
@@ -29,10 +29,10 @@ layout {
   }
 
   struts {
-     left 8
-     right 8
+     left 0
+     right 0
      top 0
-     bottom 8
+     bottom 0
   }
 
 }
