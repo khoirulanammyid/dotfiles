@@ -1,12 +1,15 @@
 #!/bin/sh
 
 xin() {
-    xbps-query -Rs '*' | awk '$1 !~ /\[\*\]/' | \
-    fzf -m --prompt="Install package: " \
-        --preview 'xbps-query -RS {2}' \
-        --preview-window=right:60%:wrap | \
-    awk '{print $2}' | \
-    xargs -ro sudo xbps-install -S
+    local pkgs
+    pkgs=$(xbps-query -Rs '*' | awk '{print $2}' | \
+        fzf -m --prompt="Install package: " \
+            --preview 'xbps-query -R {}' \
+            --preview-window=right:60%:wrap)
+
+    [[ -z "$pkgs" ]] && return
+
+    echo "$pkgs" | xargs -ro sudo xbps-install -S
 }
 
 xrm() {
