@@ -1,5 +1,8 @@
 #!/bin/sh 
 
+# x200 shenanigans
+alias agy="qemu-x86_64 -cpu Haswell ~/.local/bin/agy"
+
 alias ..='cd ..'
 alias ...='cd ../..'
 alias .3='cd ../../../'
