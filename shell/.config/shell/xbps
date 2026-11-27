@@ -9,7 +9,7 @@ xin() {
 
     [[ -z "$pkgs" ]] && return
 
-    echo "$pkgs" | xargs -ro sudo xbps-install -S
+    echo "$pkgs" | xargs -ro sudo xbps-install 
 }
 
 xrm() {
